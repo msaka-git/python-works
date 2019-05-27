@@ -99,7 +99,11 @@ class Ui_Form(object):
         self.pushButton.clicked.connect(self.action)
 
     def action(self):
-        self.yazi_alani.setText("hesap yok")
+        textboxValue = self.lineEdit.text() # line edit is where you enter input
+        if textboxValue:
+            self.yazi_alani.setText(textboxValue)
+        else:
+            self.yazi_alani.setText("hesap yok")
 
     def retranslateUi(self, Form):
         _translate = QtCore.QCoreApplication.translate
