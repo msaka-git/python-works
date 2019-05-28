@@ -7,6 +7,7 @@
 # WARNING! All changes made in this file will be lost!
 
 from PyQt5 import QtCore, QtGui, QtWidgets
+import requests
 
 class Ui_Form(object):
     def setupUi(self, Form):
@@ -100,8 +101,30 @@ class Ui_Form(object):
 
     def action(self):
         textboxValue = self.lineEdit.text() # line edit is where you enter input
-        if textboxValue:
-            self.yazi_alani.setText(textboxValue)
+        textboxValue2 = self.lineEdit_2.text()
+        textboxValue3 = int(self.lineEdit_3.text())
+
+
+
+        api_key = "bf9cdd15f4a19b5d87c30648f7493908"
+        url = "http://data.fixer.io/api/latest?access_key=" + api_key
+
+        #first_currency = input("Birinci Para Birimi:").upper()  # Örnek : USD
+        #second_currency = input("İkinci Para Birimi:").upper()  # Örnek : TRY
+        #amount = int(input("Miktar:"))  # Örnek: 15
+
+        response = requests.get(url)
+
+        infos = response.json()
+
+        firstValue = infos["rates"][textboxValue.upper()]
+        secondValue = infos["rates"][textboxValue2.upper()]
+        rsl=(secondValue / firstValue) * textboxValue3
+        rsli=str(rsl)
+
+        if textboxValue and textboxValue2 and textboxValue3:
+
+            self.yazi_alani.setText(rsli)
         else:
             self.yazi_alani.setText("hesap yok")
 
