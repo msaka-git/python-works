@@ -116,7 +116,7 @@ class Ui_Form(object):
 
         firstValue = infos["rates"][textboxValue.upper()]
         secondValue = infos["rates"][textboxValue2.upper()]
-        rsl=(secondValue / firstValue) * textboxValue3
+        rsl=round((secondValue / firstValue) * textboxValue3,2)
         rsli=str(rsl)
 
         if textboxValue and textboxValue2 and textboxValue3:
